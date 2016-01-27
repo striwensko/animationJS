@@ -1,0 +1,99 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<title>Animation Demo</title>
+
+	<script type="text/javascript" src="js/AD_FRAMEWORK.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<script>
+		var images = [];
+		function start()
+		{
+			var FNs = [];
+			FNs.push({name:'Linear', fn:EFFECTS.LINEAR});
+			FNs.push({name:'Ease In out Quad', fn:EFFECTS.EASE_IN_OUT_QUAD});
+			FNs.push({name:'Ease In out Elastic', fn:EFFECTS.EASE_IN_OUT_ELASTIC});
+			FNs.push({name:'Ease In out Back', fn:EFFECTS.EASE_IN_OUT_BACK});
+			for (var iFN = 0; iFN < FNs.length; iFN++)
+			{
+				var image = new Image();
+				image.style.display = 'block';
+				image.FN = FNs[iFN].fn;
+				image.src = 'images/xwing.png';
+				var holder = document.createElement('div');
+				holder.className = 'item';
+				
+				var name = document.createElement('span');
+				name.innerHTML = FNs[iFN].name;
+				
+				holder.appendChild(name);
+				holder.appendChild(image);
+				
+				images.push(image)
+				document.body.appendChild(holder);
+			}
+			
+			var timeLine = new TimeLine(1000, 33);
+			timeLine.addEventListener(Event.CHANGE, 'render', this);
+			timeLine.play();
+		}
+		
+		function render(event)
+		{
+			var timeLine = event.currentTarget;
+			for (var iImage = 0; iImage < images.length; iImage++)
+			{
+				var image = images[iImage];
+				image.style.marginLeft = 20 + 500 * timeLine.getTime(0, 1000, image.FN) + 'px';
+			}
+			
+			if (timeLine.position == timeLine.duration && timeLine.direction == 1)
+			{
+				timeLine.direction = -1;
+				timeLine.play();
+			}
+			else if (timeLine.position == 0 && timeLine.direction == - 1)
+			{
+				timeLine.direction = 1;
+				timeLine.play();
+			}
+		}
+		
+		window.onload = start;
+	</script>
+	<style type="text/css">
+		html
+		{
+			background-image: url(images/8FFTKBs.png);
+		}
+		.item
+		{
+			padding-top: 30px;
+			position: relative;
+		}
+		.item span
+		{
+			line-height: 30px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.item img
+		{
+			margin-left: 20px;
+		}
+		html, body
+		{
+			color: #fff;
+			font-family: Arial;
+		}
+	</style>
+</head>
+<body>
+	
+</body>
+</html>

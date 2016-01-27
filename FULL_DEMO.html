@@ -1,0 +1,432 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<title>Animation Demo</title>
+
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<script type="text/javascript" src="js/AD_FRAMEWORK.js"></script>
+	<style type="text/css">
+		body{font-family: 'lato',sans-serif;position: relative; margin: 0px; padding: 0px; background:#ffffff;width: 100%;  overflow: auto; color: #000000}
+		.animation
+		{
+			width: 320px;
+			height: 320px;
+			margin: 0px auto;
+			position: relative;
+			overflow: hidden;
+			
+			background: #ffffff; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, #ffffff 30%, #e0e0e0 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, #ffffff 30%,#e0e0e0 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, #ffffff 30%,#e0e0e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e0e0e0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+		}
+		.animation .box
+		{
+			font-size: 90px;
+			position: absolute;
+			bottom: 15px;
+			width: 100%;
+			text-align: center;
+			color: #333;
+		}
+		.animation .box2
+		{
+			font-size: 90px;
+			position: absolute;
+			bottom: 100px;
+			width: 100%;
+			text-align: center;
+			color: #333;
+		}
+		.animation #text1
+		{
+			color: #333;
+			width: 100%;
+			box-sizing: border-box;
+			padding: 20px;
+			padding-top: 15px;
+			font-size: 20px;
+			line-height:25px;
+			text-align: center;
+		}
+		.animation .item
+		{
+			line-height: 50px;
+			font-size: 30px;
+			height: 50px;
+			text-align: center;
+			width: 50px;
+			border-radius: 40px;
+			background-color: #E2DAD6;
+			border:3px solid #fff;
+			color:#605A57;
+			position: absolute;
+			top: 142px;
+			left: 132px;
+		}
+		body, html
+		{
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="animation" class="animation" style="display:none">
+		<div id="text1">Animations have never been easier</div>
+		
+		<i class="fa fa-html5 item item1"></i>
+		<i class="fa fa-css3 item item2"></i>
+		<i class="fa fa-volume-up item item3"></i>
+		<i class="fa fa-clock-o item item4"></i>
+		<i class="fa fa-magic item item5"></i>
+		<i class="fa fa-rocket item item6"></i>
+		
+		<i class="fa fa-archive box"></i>
+		<i class="fa fa-archive box2"></i>
+	</div>
+	<script type="text/javascript">
+		
+		function start()
+		{
+			var BOUNCE_TIME = 1800;
+			var ROTATION_TIME_1 = 3000;
+			var ROTATION_TIME_2 = 4000;
+			var ROTATION_TIME_3 = 5000;
+			var ROTATION_TIME_4 = 6000;
+			var ROTATION_TIME_5 = 7000;
+			var ROTATION_TIME_6 = 8000;
+			var FALL_TIME = 9000;
+			var ad;
+			var config = {
+				id:'animation',
+				duration: 15000,
+				animation:
+				[
+					{selector:'.box', property:[
+						{name:'matrix', data:
+							{
+								y: [
+									{time:200, value:-70, ease:EFFECTS.EASE_OUT_BOUNCE},
+									{time:900, value:0, ease:EFFECTS.EASE_OUT_BOUNCE}
+								],
+								opacity:[
+									{time:200, value:0},
+									{time:500, value:1},
+									{time:1500, value:1},
+									{time:1800, value:0}
+								]
+							}
+						}
+					]},
+					{selector:'.box2', property:[
+						{name:'matrix', data:
+							{
+								y: [
+									{time:800, value:-70, ease:EFFECTS.EASE_OUT_BOUNCE},
+									{time:1300, value:0, ease:EFFECTS.EASE_OUT_BOUNCE}
+								],
+								opacity:[
+									{time:800, value:0},
+									{time:1000, value:1}
+								]
+							}
+						}
+					]},
+					{selector:'.item1', property:[
+						{name:'matrix', data:
+							{
+								radius: [
+									{time:BOUNCE_TIME, value:0, ease:EFFECTS.EASE_OUT_BACK},
+									{time:BOUNCE_TIME + 500, value:90, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								angle: [
+									{time:BOUNCE_TIME + 500, value:-30},
+									
+									{time:ROTATION_TIME_1 - 400, value:-30},
+									{time:ROTATION_TIME_1      , value:-30 - 60},
+									{time:ROTATION_TIME_2 - 400, value:-30 - 60},
+									{time:ROTATION_TIME_2      , value:-30 - 120},
+									{time:ROTATION_TIME_3 - 400, value:-30 - 120},
+									{time:ROTATION_TIME_3      , value:-30 - 180},
+									{time:ROTATION_TIME_4 - 400, value:-30 - 180},
+									{time:ROTATION_TIME_4      , value:-30 - 240},
+									{time:ROTATION_TIME_5 - 400, value:-30 - 240},
+									{time:ROTATION_TIME_5      , value:-30 - 300},
+									{time:ROTATION_TIME_6 - 400, value:-30 - 300},
+									{time:ROTATION_TIME_6      , value:-30 - 360},
+								],
+								y: [
+									{time:FALL_TIME + 400, value:0},
+									{time:FALL_TIME + 800, value:300}
+								],
+								scale: [
+									{time:BOUNCE_TIME, value:0.5, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:1, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								scaleX: [
+									{time:ROTATION_TIME_6      , value:1},
+									{time:ROTATION_TIME_6 + 300, value:-1},
+								],
+								opacity: [
+									{time:BOUNCE_TIME, value:0},
+									{time:BOUNCE_TIME + 100, value:1}
+								]
+							}
+						}
+					]},
+					{selector:'.item2', property:[
+						{name:'matrix', data:
+							{
+								radius: [
+									{time:1800, value:0, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:90, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								angle: [
+									{time:2300, value:30},
+									{time:ROTATION_TIME_1 - 400, value:30},
+									{time:ROTATION_TIME_1      , value:30 - 60},
+									{time:ROTATION_TIME_2 - 400, value:30 - 60},
+									{time:ROTATION_TIME_2      , value:30 - 120},
+									{time:ROTATION_TIME_3 - 400, value:30 - 120},
+									{time:ROTATION_TIME_3      , value:30 - 180},
+									{time:ROTATION_TIME_4 - 400, value:30 - 180},
+									{time:ROTATION_TIME_4      , value:30 - 240},
+									{time:ROTATION_TIME_5 - 400, value:30 - 240},
+									{time:ROTATION_TIME_5      , value:30 - 300},
+									{time:ROTATION_TIME_6 - 400, value:30 - 300},
+									{time:ROTATION_TIME_6      , value:30 - 360},
+									
+								],
+								y: [
+									{time:FALL_TIME + 200, value:0},
+									{time:FALL_TIME + 600, value:300}
+								],
+								scale: [
+									{time:1800, value:0.5, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:1, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								scaleX: [
+									{time:ROTATION_TIME_6      , value:1},
+									{time:ROTATION_TIME_6 + 300, value:-1},
+								],
+								opacity: [
+									{time:1800, value:0},
+									{time:1900, value:1}
+								]
+							}
+						}
+					]},
+					{selector:'.item3', debug:true, property:[
+						{name:'matrix', data:
+							{
+								radius: [
+									{time:1800, value:0, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:90, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								angle: [
+									{time:2300, value:90},
+									{time:ROTATION_TIME_1 - 400, value:90},
+									{time:ROTATION_TIME_1      , value:90 - 60},
+									{time:ROTATION_TIME_2 - 400, value:90 - 60},
+									{time:ROTATION_TIME_2      , value:90 - 120},
+									{time:ROTATION_TIME_3 - 400, value:90 - 120},
+									{time:ROTATION_TIME_3      , value:90 - 180},
+									{time:ROTATION_TIME_4 - 400, value:90 - 180},
+									{time:ROTATION_TIME_4      , value:90 - 240},
+									{time:ROTATION_TIME_5 - 400, value:90 - 240},
+									{time:ROTATION_TIME_5      , value:90 - 300},
+									{time:ROTATION_TIME_6 - 400, value:90 - 300},
+									{time:ROTATION_TIME_6      , value:90 - 360},
+								],
+								y: [
+									{time:FALL_TIME      , value:0},
+									{time:FALL_TIME + 400, value:300}
+								],
+								scale: [
+									{time:1800, value:0.5, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:1, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								scaleX: [
+									{time:ROTATION_TIME_6      , value:1},
+									{time:ROTATION_TIME_6 + 300, value:-1},
+								],
+								opacity: [
+									{time:1800, value:0},
+									{time:1900, value:1}
+								]
+							}
+						}
+					]},
+					{selector:'.item4', property:[
+						{name:'matrix', data:
+							{
+								radius: [
+									{time:1800, value:0, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:90, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								angle: [
+									{time:2300, value:150},
+									{time:ROTATION_TIME_1 - 400, value:150},
+									{time:ROTATION_TIME_1      , value:150 - 60},
+									{time:ROTATION_TIME_2 - 400, value:150 - 60},
+									{time:ROTATION_TIME_2      , value:150 - 120},
+									{time:ROTATION_TIME_3 - 400, value:150 - 120},
+									{time:ROTATION_TIME_3      , value:150 - 180},
+									{time:ROTATION_TIME_4 - 400, value:150 - 180},
+									{time:ROTATION_TIME_4      , value:150 - 240},
+									{time:ROTATION_TIME_5 - 400, value:150 - 240},
+									{time:ROTATION_TIME_5      , value:150 - 300},
+									{time:ROTATION_TIME_6 - 400, value:150 - 300},
+									{time:ROTATION_TIME_6      , value:150 - 360},
+								],
+								scale: [
+									{time:1800, value:0.5, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:1, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								scaleX: [
+									{time:ROTATION_TIME_6      , value:1},
+									{time:ROTATION_TIME_6 + 300, value:-1},
+								],
+								y: [
+									{time:FALL_TIME + 200, value:0},
+									{time:FALL_TIME + 600, value:300}
+								],
+								opacity: [
+									{time:1800, value:0},
+									{time:1900, value:1}
+								]
+							}
+						}
+					]},
+					{selector:'.item5', property:[
+						{name:'matrix', data:
+							{
+								radius: [
+									{time:1800, value:0, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:90, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								angle: [
+									{time:2300, value:210},
+									{time:ROTATION_TIME_1 - 400, value:210},
+									{time:ROTATION_TIME_1      , value:210 - 60},
+									{time:ROTATION_TIME_2 - 400, value:210 - 60},
+									{time:ROTATION_TIME_2      , value:210 - 120},
+									{time:ROTATION_TIME_3 - 400, value:210 - 120},
+									{time:ROTATION_TIME_3      , value:210 - 180},
+									{time:ROTATION_TIME_4 - 400, value:210 - 180},
+									{time:ROTATION_TIME_4      , value:210 - 240},
+									{time:ROTATION_TIME_5 - 400, value:210 - 240},
+									{time:ROTATION_TIME_5      , value:210 - 300},
+									{time:ROTATION_TIME_6 - 400, value:210 - 300},
+									{time:ROTATION_TIME_6      , value:210 - 360},
+								],
+								y: [
+									{time:FALL_TIME + 400, value:0},
+									{time:FALL_TIME + 800, value:300}
+								],
+								scale: [
+									{time:1800, value:0.5, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:1, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								scaleX: [
+									{time:ROTATION_TIME_6      , value:1},
+									{time:ROTATION_TIME_6 + 300, value:-1}
+								],
+								opacity: [
+									{time:1800, value:0},
+									{time:1900, value:1}
+								]
+							}
+						}
+					]},
+					{selector:'.item6', property:[
+						{name:'matrix', data:
+							{
+								radius: [
+									{time:1800, value:0, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:90, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								angle: [
+									{time:2300, value:270},
+									{time:ROTATION_TIME_1 - 400, value:270},
+									{time:ROTATION_TIME_1      , value:270 - 60},
+									{time:ROTATION_TIME_2 - 400, value:270 - 60},
+									{time:ROTATION_TIME_2      , value:270 - 120},
+									{time:ROTATION_TIME_3 - 400, value:270 - 120},
+									{time:ROTATION_TIME_3      , value:270 - 180},
+									{time:ROTATION_TIME_4 - 400, value:270 - 180},
+									{time:ROTATION_TIME_4      , value:270 - 240},
+									{time:ROTATION_TIME_5 - 400, value:270 - 240},
+									{time:ROTATION_TIME_5      , value:270 - 300},
+									{time:ROTATION_TIME_6 - 400, value:270 - 300},
+									{time:ROTATION_TIME_6      , value:270 - 360},
+								],
+								y: [
+									{time:FALL_TIME + 600, value:0},
+									{time:FALL_TIME + 1000, value:300}
+								],
+								zIndex:[
+									{time:ROTATION_TIME_5, value:0},
+									{time:ROTATION_TIME_6, value:10}
+								],
+								scale: [
+									{time:1800, value:0.5, ease:EFFECTS.EASE_OUT_BACK},
+									{time:2300, value:1, ease:EFFECTS.EASE_OUT_BACK}
+								],
+								scaleX: [
+									{time:ROTATION_TIME_6      , value:1},
+									{time:ROTATION_TIME_6 + 300, value:-1}
+								],
+								opacity: [
+									{time:1800, value:0},
+									{time:1900, value:1}
+								]
+							}
+						}
+					]},
+					{selector:'#text1', property:[
+						{name:'matrix', data:
+							{
+								opacity:[
+									{time:700, value:0},
+									{time:1000, value:1},
+									{time:1500, value:1},
+									{time:2000, value:0},
+									{time:ROTATION_TIME_1 - 200, value:0},
+									{time:ROTATION_TIME_1, value:1},
+									{time:ROTATION_TIME_6 + 800, value:1},
+									{time:ROTATION_TIME_6 + 1000, value:0}
+								],
+								text:[
+									{time:700, value:"Animations have never been easier"},
+									{time:ROTATION_TIME_1 - 200, value:"HTML 5 Ready"},
+									{time:ROTATION_TIME_2 - 200, value:"Performance over CCS3"},
+									{time:ROTATION_TIME_3 - 200, value:"Audio Support"},
+									{time:ROTATION_TIME_4 - 200, value:"Sync in Time"},
+									{time:ROTATION_TIME_5 - 200, value:"Works like Magic"},
+									{time:ROTATION_TIME_6 - 200, value:"Fast to Make Animations"},
+								]
+							}
+						}
+					]},
+				]
+			}
+			ad = new AD(config);
+			//ad.play();
+		}
+		
+		window.onload = start;
+		
+		//https://www.fastgraph.com/makegames/3drotation/
+	</script>
+<div id="msg"></div>
+	<input type="button" onmousedown="ad.play();" value="PLAY ME!" style="display:block; margin:0 auto; background-color:#000;color:#fff;outline:0;border:0;line-height:25px; margin:15px auto;"/>
+</body>
+</html>

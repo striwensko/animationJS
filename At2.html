@@ -1,0 +1,38 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<title>Animation Demo</title>
+
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<script>
+		function start()
+		{
+var at = document.getElementById('images');
+at.position = {x:0, y:0};
+setInterval(function(){
+	at.position.x += (500 - at.position.x) / 10;
+	if (at.position.x >= 499)
+	{
+		at.position.x = 0;
+	}
+	at.style.left = at.position.x + 'px';
+}, 33);
+		}
+		window.onload = start;
+	</script>
+	<style type="text/css">
+		html
+		{
+			background-image: url(images/8FFTKBs.png);
+		}
+	</style>
+</head>
+<body>
+	<img src="images/millenium-falcon.gif" id="images" style="position:absolute; left:0; width:200px;"/>
+</body>
+</html>

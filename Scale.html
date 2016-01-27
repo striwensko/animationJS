@@ -1,0 +1,117 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<title>Animation Demo</title>
+
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<script type="text/javascript" src="js/AD_FRAMEWORK.js"></script>
+	<style type="text/css">
+		body{font-family: 'lato',sans-serif;position: relative; margin: 0px; padding: 0px; background:#ffffff;width: 100%;  overflow: auto; color: #000000}
+		.animation
+		{
+			width:640px;
+			height: 400px;
+			margin: 0px auto;
+			position: relative;
+			overflow: hidden;
+			
+			background-color: #000;
+		}
+		.animation #logo
+		{
+			width: 900px;
+			height: 385px;
+			top: 50%;
+			left: 50%;
+			margin-left: -450px;
+			margin-top: -182px;
+		}
+		.animation img
+		{
+			position: absolute;
+		}
+		.animation #text2
+		{
+			    font-family: Arial;
+    color: #4EE;
+    position: absolute;
+    top: 50%;
+    font-size: 36px;
+    margin-top: -36px;
+    width: 100%;
+    left: 0;
+    padding-left: 80px;
+		}
+		.animation .textHolder3d
+		{
+			position: absolute;
+			left: 50%;
+			transform-origin: 50% 100%;
+			margin-left: -300px;
+			transform: perspective(200px) rotateX(30deg);
+			bottom: 0%;
+		}
+		.animation  .textHolder3d #text1
+		{
+			width: 600px;
+			font-family: Arial;
+			color: #FFE81F;
+			
+			font-size: 50px;
+			text-align: justify;
+			
+			top:100%;
+		}
+		
+		body, html
+		{
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="animation" class="animation" style="display:none">
+		<img id="logo" src="images/Star_Wars_Yellow_Logo.svg"/>
+		
+	</div>
+	<script type="text/javascript">
+		var ad;
+		function start()
+		{
+			var INTRO_TIME_1 = 1000;
+			
+			var config = {
+				id:'animation',
+				duration: 5000,
+				animation:
+				[
+					{selector:'#logo', property:[
+						{name:'matrix', data:
+							{
+								scale:[
+									{time:INTRO_TIME_1, value:0},
+									{time:INTRO_TIME_1 + 1000, value:1}
+								]
+							}
+						}
+					]},
+					
+				]
+			}
+			ad = new AD(config);
+			
+		}
+		
+		window.onload = start;
+		
+		//https://www.fastgraph.com/makegames/3drotation/
+	</script>
+<input type="button" onmousedown="ad.play();" value="PLAY ME!" style="display:block; margin:0 auto; background-color:#000;color:#fff;outline:0;border:0;line-height:25px; margin:15px auto;"/>
+</body>
+</html>
